@@ -1,18 +1,26 @@
 import React, { useContext } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import UserContext from "../../context/user-context";
 
-const Navbar = () => {
+const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
   const { user } = useContext(UserContext);
+
+  const handleLogoutClick = () => {
+    handleLogout();
+  };
 
   return (
     <Box my={4}>
       <Typography variant="h5" component="h1" gutterBottom>
         {user ? 'Welcome to our application!' : 'You are not logged in'}
       </Typography>
-      {!user && (
+      {user ? (
+        <Button variant="contained" color="secondary" onClick={handleLogoutClick}>
+          Logout
+        </Button>
+      ) : (
         <Box 
           mt={3}
           sx={{

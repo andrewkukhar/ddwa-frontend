@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from '@mui/material';
 import Navbar from "../authentication/Navbar";
+import HomeBody from './HomeBody';
 
-const Home = () => {
-
+const Home = ({ handleLogout }: { handleLogout: () => void }) => {
   return (
     <Container 
       sx={{
@@ -15,7 +15,8 @@ const Home = () => {
         height: '100vh',
       }} 
     >
-      <Navbar/>
+      <Navbar handleLogout={handleLogout} />
+      <HomeBody />
     </Container>
   );
 };
